@@ -36,9 +36,20 @@ class YStockQuoteTestCase(TestWithScenarios):
         symbol = 'GOOG'
         all_info = ystockquote.get_all(symbol)
         self.assertIsInstance(all_info, dict)
-        pc = all_info['previous_close']
-        self.assertNotEqual(pc, 'N/A')
-        self.assertGreater(float(pc), 0)
+        print(len(all_info))
+        #self.assertEqual(all_info['rep'],ystockquote.rep(symbol))
+        self.assertEqual(all_info['dividend_yield'],
+                         ystockquote.get_dividend_yield(symbol))
+        self.assertEqual(all_info['fifty_sma'],
+                         ystockquote.get_50_sma(symbol))
+        self.assertEqual(all_info['company_name'],
+                         ystockquote.get_company_name(symbol))
+        self.assertEqual(all_info['book_value'],
+                         ystockquote.get_book_value(symbol))
+
+        #pc = all_info['previous_close']
+        #self.assertNotEqual(pc, 'N/A')
+        #self.assertGreater(float(pc), 0)
 
     def test_get_historical_prices(self):
         symbol = 'GOOG'

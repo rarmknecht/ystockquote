@@ -39,93 +39,126 @@ def get_all(symbol):
 
     Returns a dictionary.
     """
+
+    # Broken IDs down into sets of 5 to confirm alignment, resolves Issue #12
     ids = \
-        'ydb2r1b3qpoc1d1cd2c6t1k2p2c8m5c3m6gm7hm8k1m3lm4l1t8w1g1w4g3p' \
-        '1g4mg5m2g6kvjj1j5j3k4f6j6nk5n4ws1xj2va5b6k3t7a2t615l2el3e7v1' \
-        'e8v7e9s6b4j4p5p6rr2r5r6r7s7'
+        'ydb2r1b3' \
+        'qpoc1d1' \
+        'cd2c6t1k2' \
+        'p2c8m5gm7' \
+        'hm8k1m3l' \
+        'm4l1t8w1g1' \
+        'w4g3p1g4m' \
+        'g5m2g6kv' \
+        'jj1j5j3k4' \
+        'j6nk5n4' \
+        'ws1xv' \
+        'a5b6k3t7a2' \
+        't6i5l2el3' \
+        'e7v1e8v7e9' \
+        's6b4j4p5p6' \
+        'rr2r5r6r7s7'
+        # 'ydb2r1b3qpoc1d1cd2c6t1k2p2c8m5c3m6gm7hm8k1m3lm4l1t8w1g1w4g3p' \
+        # '1g4mg5m2g6kvjj1j5j3k4f6j6nk5n4ws1xj2va5b6k3t7a2t615l2el3e7v1' \
+        # 'e8v7e9s6b4j4p5p6rr2r5r6r7s7'
     values = _request(symbol, ids).split(',')
     return dict(
-        dividend_yield=values[0],
-        dividend_per_share=values[1],
-        ask_realtime=values[2],
-        dividend_pay_date=values[3],
-        bid_realtime=values[4],
-        ex_dividend_date=values[5],
-        previous_close=values[6],
-        today_open=values[7],
-        change=values[8],
-        last_trade_date=values[9],
-        change_percent_change=values[10],
-        trade_date=values[11],
-        change_realtime=values[12],
-        last_trade_time=values[13],
-        change_percent_realtime=values[14],
-        change_percent=values[15],
-        after_hours_change_realtime=values[16],
-        change_200_sma=values[17],
-        todays_low=values[18],
-        change_50_sma=values[19],
-        todays_high=values[20],
-        percent_change_50_sma=values[21],
-        last_trade_realtime_time=values[22],
-        fifty_sma=values[23],
-        last_trade_time_plus=values[24],
-        twohundred_sma=values[25],
-        last_trade_price=values[26],
-        one_year_target=values[27],
-        todays_value_change=values[28],
-        holdings_gain_percent=values[29],
-        todays_value_change_realtime=values[30],
-        annualized_gain=values[31],
-        price_paid=values[32],
-        holdings_gain=values[33],
-        todays_range=values[34],
-        holdings_gain_percent_realtime=values[35],
-        todays_range_realtime=values[36],
-        holdings_gain_realtime=values[37],
-        fiftytwo_week_high=values[38],
-        more_info=values[39],
-        fiftytwo_week_low=values[40],
-        market_cap=values[41],
-        change_from_52_week_low=values[42],
-        market_cap_realtime=values[43],
-        change_from_52_week_high=values[44],
-        float_shares=values[45],
-        percent_change_from_52_week_low=values[46],
-        company_name=values[47],
-        percent_change_from_52_week_high=values[48],
-        notes=values[49],
-        fiftytwo_week_range=values[50],
-        shares_owned=values[51],
-        stock_exchange=values[52],
-        shares_outstanding=values[53],
-        volume=values[54],
-        ask_size=values[55],
-        bid_size=values[56],
-        last_trade_size=values[57],
-        ticker_trend=values[58],
-        average_daily_volume=values[59],
-        trade_links=values[60],
-        order_book_realtime=values[61],
-        high_limit=values[62],
-        eps=values[63],
-        low_limit=values[64],
-        eps_estimate_current_year=values[65],
-        holdings_value=values[66],
-        eps_estimate_next_year=values[67],
-        holdings_value_realtime=values[68],
-        eps_estimate_next_quarter=values[69],
-        revenue=values[70],
-        book_value=values[71],
-        ebitda=values[72],
-        price_sales=values[73],
-        price_book=values[74],
-        pe=values[75],
-        pe_realtime=values[76],
-        peg=values[77],
-        price_eps_estimate_current_year=values[78],
-        price_eps_estimate_next_year=values[79],
-        short_ratio=values[80],
+        dividend_yield=values[0],  # y
+        dividend_per_share=values[1],  # d
+        ask_realtime=values[2],  # b2
+        dividend_pay_date=values[3],  # r1
+        bid_realtime=values[4],  # b3
+
+        ex_dividend_date=values[5],  # q
+        previous_close=values[6],  # p
+        today_open=values[7],  # o
+        change=values[8],  # c1
+        last_trade_date=values[9],  # d1
+
+        change_percent_change=values[10],  # c
+        trade_date=values[11],  # d2
+        change_realtime=values[12],  # c6
+        last_trade_time=values[13],  # t1
+        change_percent_realtime=values[14],  # k2
+
+        change_percent=values[15],  # p2
+        after_hours_change_realtime=values[16],  # c8
+        change_200_sma=values[17],  # m5
+        todays_low=values[18],  # g
+        change_50_sma=values[19],  # m7
+
+        todays_high=values[20],  # h
+        percent_change_50_sma=values[21],  # m8
+        last_trade_realtime_time=values[22],  # k1
+        fifty_sma=values[23],  # m3
+        last_trade_time_plus=values[24],  # l - el
+
+        twohundred_sma=values[25],  # m4
+        last_trade_price=values[26],  # l1 - el one
+        one_year_target=values[27],  # t8
+        todays_value_change=values[28],  # w1
+        holdings_gain_percent=values[29],  # g1
+
+        todays_value_change_realtime=values[30],  # w4
+        annualized_gain=values[31],  # g3
+        price_paid=values[32],  # p1
+        holdings_gain=values[33],  # g4
+        todays_range=values[34],  # m
+
+        holdings_gain_percent_realtime=values[35],  # g5
+        todays_range_realtime=values[36],  # m2
+        holdings_gain_realtime=values[37],  # g6
+        fiftytwo_week_high=values[38],  # k
+        more_info=values[39],  # v
+
+        fiftytwo_week_low=values[40],  # j
+        market_cap=values[41],  # j1
+        change_from_52_week_low=values[42],  # j5
+        market_cap_realtime=values[43],  # j3
+        change_from_52_week_high=values[44],  # k4
+
+        float_shares=_request(symbol, 'f6'),  # ''.join(values[45:47]),  # f6
+        percent_change_from_52_week_low=values[45],  # j6
+        company_name=values[46],  # n
+        percent_change_from_52_week_high=values[47],  # k5
+        notes=values[48],  # n4
+
+        fiftytwo_week_range=values[49],  # w
+        shares_owned=values[50],  # s1
+        stock_exchange=values[51],  # x
+        shares_outstanding=_request(symbol, 'j2'),  # j2
+        volume=values[52],  # v
+
+        ask_size=values[53],  # a5
+        bid_size=values[54],  # b6
+        last_trade_size=values[55],  # k3
+        ticker_trend=values[56],  # t7
+        average_daily_volume=values[57],  # a2
+
+        trade_links=values[58],  # t6
+        order_book_realtime=values[59],  # i5
+        high_limit=values[60],  # l2
+        eps=values[61],  # e
+        low_limit=values[62],  # l3
+
+        eps_estimate_current_year=values[63],  # e7
+        holdings_value=values[64],  # v1
+        eps_estimate_next_year=values[65],  # e8
+        holdings_value_realtime=values[66],  # v7
+        eps_estimate_next_quarter=values[67],  # e9
+
+        revenue=values[68],  # s6
+        book_value=values[69],  # b4
+        ebitda=values[70],  # j4
+        price_sales=values[71],  # p5
+        price_book=values[72],  # p6
+
+        pe=values[73],  # r
+        pe_realtime=values[74],  # r2
+        peg=values[75],  # r5
+        price_eps_estimate_current_year=values[76],  # r6
+        price_eps_estimate_next_year=values[77],  # r7
+        short_ratio=values[78],  # s7
     )
 
 
